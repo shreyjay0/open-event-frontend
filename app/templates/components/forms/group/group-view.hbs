@@ -70,18 +70,24 @@
     </div>
     <div class="three wide column">
       {{#if this.session.isAuthenticated}}
-        <button class="{{if this.isFollowed 'red' 'blue'}} mt-4 ui fluid button" {{action 'toggleFollow'}}>
-          {{#if this.isFollowed}}
-            {{t 'Unfollow Group'}}      
-          {{else}}
-            {{t 'Follow Group'}}         
-          {{/if}}                 
+        <button class="blue mt-4 ui fluid button" {{action 'toggleFollow'}}>
+          <div class="ui blue fluid button">
+            <i class="basic-details large icons">
+              <i class="users icon"></i>
+              <i class="add icon inverted corner"></i>
+            </i>
+            {{#if this.isFollowed}}
+              <span class="mr-4 ml-4">{{t 'Unfollow Group'}}</span> 
+            {{else}}
+              <span class="mr-4 ml-4">{{t 'Follow Group'}}</span> 
+            {{/if}}   
+            <div class="ui blue basic label left pointing">
+              {{@group.followerCount}}
+            </div>
+          </div>
         </button>
       {{/if}}
-        <div class="ui blue horizontal basic label fluid text center aligned mt-2 p-2">
-          <i class="users icon"></i>
-          ({{@group.followerCount}} {{t 'followers'}})
-        </div>
+
         {{#if this.followers}}
           <div class="d-flex content-center items-center wrap mt-4">
             {{#each this.followers as |follower index|}}
